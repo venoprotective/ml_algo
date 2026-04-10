@@ -9,7 +9,7 @@ class AdalineGD:
         
     def activation(self, X):
         '''Вычисление линейной активации'''
-        return X 
+        return X
 
     def net_input(self, X):
         '''Вычисление фактического ввода'''
