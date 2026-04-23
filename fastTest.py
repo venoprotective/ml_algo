@@ -57,7 +57,7 @@ plt.ylabel('длина лепестка')
 plt.legend(loc='upper left')
 plt.tight_layout()
 plt.show()
-
+print('113212iprjdpflskfnsrpenkpdsfmepfkfknwigoeznfleki4')
 # measurement MSE 
 plt.plot(range(1, len(ada.losses_) + 1), ada.losses_, marker='o')
 plt.xlabel('Epochs')
