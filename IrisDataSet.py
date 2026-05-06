@@ -1,27 +1,29 @@
 import os
 import pandas as pd
 import numpy as np
-from sklearn.datasets import load_iris
+from sklearn import datasets
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 
-s = 'https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/0e7a9b0a5d22642a06d3d5b9bcbad9890c8ee534/iris.csv'
+
+# s = 'https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/0e7a9b0a5d22642a06d3d5b9bcbad9890c8ee534/iris.csv'
 
 # df = pd.read_csv(s, 
 #                  header=None,
 #                  encoding='utf-8'
 #                  )
-iris = load_iris()
+# iris = load_iris()
 # select setosa and versicolor
 # y = df.iloc[1:, 4].values 
 # y = np.where(y == 'setosa', 0, 1)
 
 # X = df.iloc[1:, [0, 2]].values
 
-y = iris.target[:100]
-y = np.where(y==0, 0, 1)
-X = iris.data[:100, [0, 2]]
+# y = iris.target[:100]
+# y = np.where(y==0, 0, 1)
+# X = iris.data[:100, [0, 2]]
 
-
-print(X[0], len(X))  
+# print(X[0], len(X))  
 #        0    1    2    3               4
 # 145  6.7  3.0  5.2  2.3  Iris-virginica
 # 146  6.3  2.5  5.0  1.9  Iris-virginica
@@ -34,9 +36,26 @@ print(X[0], len(X))
 # (x_j)' = (x_j - m_j) / o_j, где x_j - вектор из значений j-того признака всех обучающих образцов n
 # o_j - стандартное отклонение 
 # m_j - среднее значение выборки 
-X = X.astype(np.float64)
-
+# X = X.astype(np.float64)
 # X_std = np.copy(X)
 # X_std[:, 0] = (X[:, 0] - X[:, 0].mean()) / X[:, 0].std()
 # X_std[:, 1] = (X[:, 1] - X[:, 1].mean()) / X[:, 1].std()
-X_std = ((X - X.mean(axis=0)) / X.std(axis=0))
+
+# X_std = ((X - X.mean(axis=0)) / X.std(axis=0))
+
+iris = datasets.load_iris()
+X = iris.data[:, [2,3]]
+y = iris.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1, stratify=y)
+
+sc = StandardScaler()
+sc.fit(X_train)
+
+X_train_std = sc.transform(X_train)
+X_test_std = sc.transform(X_test)
+
+X_train_01_subset = X_train_std[(y_train == 0) | (y_train == 1)]
+y_train_01_subset = y_train[(y_train == 0) | (y_train == 1)]
+
+X_test_01_subset = X_test_std[(y_test == 0) | (y_test == 1)]
+y_test_01_subset = y_test[(y_test == 0) | (y_test == 1)]

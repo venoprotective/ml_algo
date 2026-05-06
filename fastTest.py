@@ -5,6 +5,7 @@ from AdaptiveLinearNeuron import AdalineGD
 from IrisDataSet import *
 from plot_decision_regions import plot_decision_regions
 
+from LogisticRegression import LogisticRegressionGD
 
 ppn = Perceptron(eta=0.1, n_iter=10)
 ppn.fit(X, y)
@@ -48,19 +49,33 @@ ppn.fit(X, y)
 
 
 # testing after standardization 
-ada = AdalineGD(n_iter=20, eta=0.5)
-ada.fit(X_std, y)
-plot_decision_regions(X_std, y, classifier=ada)
-plt.title('Adaline with GD')
-plt.xlabel('длина чашел.')
-plt.ylabel('длина лепестка')
-plt.legend(loc='upper left')
+# ada = AdalineGD(n_iter=20, eta=0.5)
+# ada.fit(X_std, y)
+# plot_decision_regions(X_std, y, classifier=ada)
+# plt.title('Adaline with GD')
+# plt.xlabel('длина чашел.')
+# plt.ylabel('длина лепестка')
+# plt.legend(loc='upper left')
+# plt.tight_layout()
+# plt.show()
+# print('113212iprjdpflskfnsrpenkpdsfmepfkfknwigoeznfleki4')
+# # measurement MSE 
+# plt.plot(range(1, len(ada.losses_) + 1), ada.losses_, marker='o')
+# plt.xlabel('Epochs')
+# plt.ylabel('MSE')
+# plt.tight_layout()
+# plt.show()
+
+
+lrgd = LogisticRegressionGD(eta=0.3, n_iter=1000, random_state=1)
+lrgd.fit(X_train_01_subset, y_train_01_subset)
+
+plot_decision_regions(X=X_train_01_subset, y=y_train_01_subset, classifier=lrgd)
+plt.xlabel("длина чашел стандартизирована")
+plt.ylabel("длина лепестка стандартизирована")
+
+plt.legend(loc = 'upper left')
 plt.tight_layout()
 plt.show()
-print('113212iprjdpflskfnsrpenkpdsfmepfkfknwigoeznfleki4')
-# measurement MSE 
-plt.plot(range(1, len(ada.losses_) + 1), ada.losses_, marker='o')
-plt.xlabel('Epochs')
-plt.ylabel('MSE')
-plt.tight_layout()
-plt.show()
+
+print(lrgd.accuracy(X=X_test_01_subset, y_true=y_test_01_subset))
