@@ -23,6 +23,7 @@ print(f'ovr accuracy {accuracy_score_ovr:.4f}')
 print(f'multinomial accuracy {accuracy_score_multinomial:.4f}')
 print(f'difference {abs(accuracy_score_multinomial - accuracy_score_ovr):.4f}')
 
+print(lr_ovr.predict_proba(X_test_std[:3, :]))
 
 # plot_decision_regions(X=X_combined_std, y=y_combined,
 #                       classifier=lr, test_idx=range(105, 150)
