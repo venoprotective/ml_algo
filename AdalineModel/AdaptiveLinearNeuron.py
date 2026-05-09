@@ -1,7 +1,6 @@
 import numpy as np
 
 class AdalineGD:
-    
     def __init__(self, n_iter=50, eta=0.01, random_state=1):
         self.eta = eta
         self.n_iter = n_iter
