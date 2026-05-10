@@ -13,25 +13,27 @@ class SVMClass:
         self.b_ = np.float64(0.0)
         self.losses_ = []
         
+        y_ = np.where(y <= 0, -1, 1)
+        
         for _ in range(self.n_iter):
-            margins = y * self.net_input(X)
+            margins = y_ * self.net_input(X)
             violations = margins < 1
             
             # градиент по w 
             # регуляризация w / C (all)
             grad_w_reg = self.w_ / self.C
             # хинге лосс для нарушителей -y_i * x_i
-            grad_w_loss = -np.dot(X[violations].T, y[violations])  
+            grad_w_loss = -np.dot(X[violations].T, y_[violations])  
             # собираем градиент
             grad_w = grad_w_reg + grad_w_loss / X.shape[0]
             
-            grad_b = -np.sum(y[violations]) / X.shape[0] if np.any(violations) else 0 
+            grad_b = -np.sum(y_[violations]) / X.shape[0] if np.any(violations) else 0 
             
             # update weights 
             self.w_ -= self.eta * grad_w 
             self.b_ -= self.eta * grad_b 
             
-            losses = self.hinge_loss(X, y)
+            losses = self.hinge_loss(X, y_)
             loss = np.mean(losses) + np.dot(self.w_, self.w_) /(2 * self.C)
             self.losses_.append(loss)
         
