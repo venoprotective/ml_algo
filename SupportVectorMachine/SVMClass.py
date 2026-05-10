@@ -1,6 +1,6 @@
 import numpy as np 
 
-class SVM:
+class SVMClass:
     def __init__(self, n_iter=1000, eta=0.01, C=100, random_state=1):
         self.n_iter = n_iter 
         self.eta = eta
