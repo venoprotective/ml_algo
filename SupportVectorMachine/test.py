@@ -3,7 +3,7 @@ from sklearn.svm import SVC
 import sys
 from pathlib import Path  
 sys.path.append(str(Path(__file__).parent.parent))
-from IrisDataSet import *
+from irisDataSet import *
 from plot_decision_regions import plot_decision_regions
 import matplotlib.pyplot as plt 
 

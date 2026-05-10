@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from IrisDataSet import *
+from irisDataSet import *
 
 # # зависимость длины лепестка от длины чашелистика
 # plt.scatter(X[:50, 0], X[:50, 1], color='red', marker='o', label='Setosa')
