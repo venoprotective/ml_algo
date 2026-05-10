@@ -3,7 +3,7 @@ import sys
 from pathlib import Path  
 sys.path.append(str(Path(__file__).parent.parent))
 from plot_decision_regions import *
-from IrisDataSet import *
+from irisDataSet import *
 import matplotlib.pyplot as plt 
 
 
