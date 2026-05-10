@@ -12,9 +12,9 @@ svm = SVC(kernel='linear', C=1.0, random_state=1)
 my_svm = SVMClass(C=1.0, random_state=1)
 
 svm.fit(X_train_std, y_train)
-my_svm.fit(X_train_std, y_svm)
+my_svm.fit(X_train_std, y_train)
 
-plot_decision_regions(X_combined_std, y_combined, classifier=svm, test_idx=(105,150))
+plot_decision_regions(X_combined_std, y_combined, classifier=svm, test_idx = range(105, 150))
 plt.xlabel("длина чашел.")
 plt.ylabel("длина лепестка")
 plt.legend(loc='upper left')

@@ -54,6 +54,3 @@ y_test_01_subset = y_test[(y_test == 0) | (y_test == 1)]
 
 X_combined_std = np.vstack((X_train_std, X_test_std))
 y_combined = np.hstack((y_train, y_test))
-
-
-y_svm = np.where(y_perceptron == 'setosa', -1, 1)
