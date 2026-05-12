@@ -8,7 +8,7 @@ from plot_decision_regions import plot_decision_regions
 import matplotlib.pyplot as plt 
 
  
-tree_model = DecisionTreeClassifier(criterion='gini', max_depth=4, random_state=1)
+tree_model = DecisionTreeClassifier(criterion='gini', max_depth=4, random_state=1) # optimally depth 4, 3-6 - normal mode 
 tree_model.fit(X_train, y_train)
 if (str(input("input 1 if u want watch plot else diagram: ")) == '1'):
     X_combined = np.vstack((X_train, X_test))
